@@ -1,0 +1,12 @@
+# Inventory file for Vagrant VMs
+app       ansible_ssh_host=10.0.0.100
+
+[api-servers]
+app
+
+[frontend-servers]
+app
+
+[development:children]
+api-servers
+frontend-servers

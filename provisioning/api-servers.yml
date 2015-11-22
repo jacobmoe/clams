@@ -1,0 +1,7 @@
+---
+- name: Provision API servers
+  hosts: api-servers
+  sudo: true
+  roles:
+    - role: joshualund.golang
+    - role: thrift
