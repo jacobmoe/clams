@@ -4,4 +4,6 @@
 
 (in-package :jacobmoeller.controllers)
 
+(print "LIB CONTROLLERS ======================")
+
 (defun home (params) (format nil "home ~A" params))

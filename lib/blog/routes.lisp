@@ -5,9 +5,10 @@
 
 (in-package :jacobmoeller.blog.routes)
 
+(print "BLOG CONTROLLERS ======================")
+
 (defun get-param (params name)
  (cdr (assoc name params :test #'string=)))
 
-(defun register-routes (app)
+(defun blog/register-routes (app)
   (setf (ningle:route app "/blog/:id") 'index))
-

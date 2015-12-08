@@ -1,13 +1,22 @@
-(asdf:defsystem #:jacobmoeller
+(asdf:defsystem :jacobmoeller
   :description "Site"
   :author "Jacob Moeller <jacobmoe@gmail.com>"
-  :license ""
+  :license "MIT"
   :depends-on (:clack
                :lack
                :ningle)
   :serial t
-  :components ((:module "src"
-                :components
-                ((:file "main" :depends-on ("routes"))
-                 (:file "routes" :depends-on ("controllers"))
-                 (:file "controllers")))))
+  :components ((:module lib
+                        :components
+                        ((:file "routes"
+                                :depends-on
+                                ("controllers" blog))
+                         (:file "controllers")
+                         (:module blog
+                                  :components
+                                  ((:file "routes"
+                                          :depends-on
+                                          ("controllers"))
+                                   (:file "controllers")))))
+
+               (:file "app" :depends-on (lib))))
