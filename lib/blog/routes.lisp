@@ -1,6 +1,6 @@
 (defpackage :jacobmoeller/lib/blog/routes
   (:use :cl)
-  ;; (:import-from :jacobmoeller.blog.controllers :index)
+  (:import-from :jacobmoeller/lib/blog/controllers)
   (:export :register-routes))
 
 (in-package :jacobmoeller/lib/blog/routes)
@@ -9,5 +9,5 @@
  (cdr (assoc name params :test #'string=)))
 
 (defun register-routes (app)
-  (setf (ningle:route app "/blog") '(lambda (params) ("BLOG INDEX")))
-  (setf (ningle:route app "/blog/:id") '(lambda (params) ("BLOGGGG"))))
+  (setf (ningle:route app "/blog") 'jacobmoeller/lib/blog/controllers:index)
+  (setf (ningle:route app "/blog/:id") 'jacobmoeller/lib/blog/controllers:show))

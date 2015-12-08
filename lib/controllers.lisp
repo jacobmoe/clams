@@ -1,7 +1,8 @@
 (defpackage :jacobmoeller/lib/controllers
   (:use :cl)
-  (:export :home))
+  (:export :index :show))
 
 (in-package :jacobmoeller/lib/controllers)
 
-(defun home (params) (format nil "==> home ~A" params))
+(defun index (params) (format nil "==> home ~A" params))
+(defun show (params) (format nil "==> show ~A" params))

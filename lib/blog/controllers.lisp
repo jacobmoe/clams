@@ -1,9 +1,8 @@
-(defpackage :jacobmoeller.blog.controllers
+(defpackage :jacobmoeller/lib/blog/controllers
   (:use :cl)
-  (:export :index))
+  (:export :index :show))
 
-(in-package :jacobmoeller.blog.controllers)
+(in-package :jacobmoeller/lib/blog/controllers)
 
-(print "BLOG CONTROLLERS ======================")
-
-(defun index (params) "blog index")
+(defun index (params) (format nil "blog index ~A" params))
+(defun show (params) (format nil "blog show view ~A" params))
