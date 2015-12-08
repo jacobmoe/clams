@@ -1,23 +1,21 @@
-(defpackage :jacobmoeller.routes
+(defpackage :jacobmoeller/lib/routes
   (:use :cl)
-  (:import-from :jacobmoeller.controllers :home)
-  (:import-from :jacobmoeller.blog.routes :blog/register-routes)
+  (:import-from :jacobmoeller/lib/controllers)
+  (:import-from :jacobmoeller/lib/blog/routes)
   (:export :register-routes))
 
-(in-package :jacobmoeller.routes)
+(in-package :jacobmoeller/lib/routes)
 
 (defun get-param (params name)
   (cdr (assoc name params :test #'string=)))
 
 (defun register-routes (app)
   (setf (ningle:route app "/" :method :GET)
-        '(lambda (params)
-                "HOME")))
+        'jacobmoeller/lib/controllers:home)
 
-(print "LIB CONTROLLERS ======================")
+  (jacobmoeller/lib/blog/routes:register-routes app)
 
-
-  ;; (blog/register-routes app)
+  (setf (ningle:route app "/:id") '(lambda (params) ("HULLO"))))
 
   ;; (setf (ningle:route app "/:id")
   ;;       '(lambda (params)

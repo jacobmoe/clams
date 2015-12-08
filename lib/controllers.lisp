@@ -1,9 +1,7 @@
-(defpackage :jacobmoeller.controllers
+(defpackage :jacobmoeller/lib/controllers
   (:use :cl)
   (:export :home))
 
-(in-package :jacobmoeller.controllers)
+(in-package :jacobmoeller/lib/controllers)
 
-(print "LIB CONTROLLERS ======================")
-
-(defun home (params) (format nil "home ~A" params))
+(defun home (params) (format nil "==> home ~A" params))

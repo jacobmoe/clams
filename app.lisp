@@ -1,9 +1,9 @@
-(defpackage :jacobmoeller
+(defpackage :jacobmoeller/app
   (:use :cl)
-  (:import-from :jacobmoeller.routes :register-routes)
+  (:import-from :jacobmoeller/lib/routes :register-routes)
   (:export :start :stop))
 
-(in-package :jacobmoeller)
+(in-package :jacobmoeller/app)
 
 (defvar *app* (make-instance 'ningle:<app>))
 (register-routes *app*)
