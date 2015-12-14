@@ -1,6 +1,6 @@
 (defpackage :jacobmoeller/app
   (:use :cl)
-  (:import-from :jacobmoeller/lib/routes :register-routes)
+  (:import-from :jacobmoeller/api/routes :register-routes)
   (:export :start :stop))
 
 (in-package :jacobmoeller/app)
