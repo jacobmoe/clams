@@ -1,16 +1,16 @@
-(defpackage :jacobmoeller/api/routes
+(defpackage :clams/api/routes
   (:use :cl)
-  (:import-from :jacobmoeller/api/controller)
-  (:import-from :jacobmoeller/api/blog/routes)
+  (:import-from :clams/api/controller)
+  (:import-from :clams/api/blog/routes)
   (:export :register-routes))
 
-(in-package :jacobmoeller/api/routes)
+(in-package :clams/api/routes)
 
 (defun register-routes (app)
   (setf (ningle:route app "/" :method :GET)
-        'jacobmoeller/api/controller:index)
+        'clams/api/controller:index)
 
-  (jacobmoeller/api/blog/routes:register-routes app)
+  (clams/api/blog/routes:register-routes app)
 
   (setf (ningle:route app "/:id")
-        'jacobmoeller/api/controller:show))
+        'clams/api/controller:show))

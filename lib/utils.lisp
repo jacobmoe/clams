@@ -1,4 +1,4 @@
-(defpackage :jacobmoeller/lib/utils
+(defpackage :clams/lib/utils
   (:use :cl :ningle)
   (:import-from :lack.response
                 :response
@@ -6,7 +6,7 @@
   (:import-from :datafly :encode-json)
   (:export :register-routes))
 
-(in-package :jacobmoeller/lib/utils)
+(in-package :clams/lib/utils)
 
 (defun render-json (object)
   (setf (getf (response-headers *response*) :content-type) "application/json")

@@ -1,9 +1,9 @@
-(defpackage :jacobmoeller/api/controller
+(defpackage :clams/api/controller
   (:use :cl)
-  (:import-from :jacobmoeller/lib/utils :render-json)
+  (:import-from :clams/lib/utils :render-json)
   (:export :index :show))
 
-(in-package :jacobmoeller/api/controller)
+(in-package :clams/api/controller)
 
 (defun index (params)
   (print (render-json '((test1 . 1) (test2 . 2) (test3 . 3)))))

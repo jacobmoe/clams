@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     app.vm.network :private_network, ip: '10.0.0.100'
     app.vm.network "forwarded_port", guest: 80, host: 8080
 
-    app.vm.synced_folder "../.", "/home/vagrant/jacobmoeller"
+    app.vm.synced_folder "../.", "/home/vagrant/clams"
   end
 
   config.vm.provision 'ansible' do |ansible|

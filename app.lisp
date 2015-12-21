@@ -1,9 +1,12 @@
-(defpackage :jacobmoeller/app
+(defpackage :clams/app
   (:use :cl)
-  (:import-from :jacobmoeller/api/routes :register-routes)
+  (:import-from :clams/config :configure)
+  (:import-from :clams/api/routes :register-routes)
   (:export :start :stop))
 
-(in-package :jacobmoeller/app)
+(in-package :clams/app)
+
+(configure)
 
 (defvar *app* (make-instance 'ningle:<app>))
 (register-routes *app*)
