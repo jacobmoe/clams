@@ -6,18 +6,24 @@
 
 (setf (config-env-var) "LISP_APP_ENV")
 
+(setf database-development-config
+  '(:system :postgres
+    :name "clams_dev"
+    :username "postgres"
+    :password ""))
+
+(defconfig :common
+  (cons :database-config (list database-development-config)))
+
 (defconfig |development|
-  '(:database-config (:system :postgres
-                      :name "clams_dev"
-                      :username "postgres"
-                      :password "")))
+  (cons :database-config (list database-development-config)))
 
 (defun configure ()
-  (defparameter database-config
-    (getf (config :clams/config) :database-config))
+  (let ((database-config
+         (getf (config :clams/config) :database-config)))
 
-  (setf (context :database)
-    (dbi:connect (getf database-config :system)
-                 :database-name (getf database-config :name)
-                 :username (getf database-config :username)
-                 :password (getf database-config :password))))
+    (setf (context :database)
+          (dbi:connect (getf database-config :system)
+                       :database-name (getf database-config :name)
+                       :username (getf database-config :username)
+                       :password (getf database-config :password)))))

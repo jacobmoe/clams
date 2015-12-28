@@ -1,7 +1,0 @@
-- hosts: all
-  sudo: true
-  roles:
-    - role: common
-
-- include: api-servers.yml
-- include: frontend-servers.yml
