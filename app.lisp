@@ -1,12 +1,10 @@
 (defpackage :clams/app
   (:use :cl)
-  (:import-from :clams/config :configure)
+  (:import-from :clams/config :configure :disconnect)
   (:import-from :clams/api/routes :register-routes)
   (:export :start :stop))
 
 (in-package :clams/app)
-
-(configure)
 
 (defvar *app* (make-instance 'ningle:<app>))
 (register-routes *app*)
@@ -15,9 +13,11 @@
 
 (defun start ()
   (when *handler* (stop))
+  (configure)
   (setf *handler*
         (clack:clackup *app*)))
 
 (defun stop ()
+  (disconnect)
   (clack:stop *handler*)
   (setf *handler* nil))

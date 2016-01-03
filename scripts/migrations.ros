@@ -1,0 +1,50 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+
+(ql:quickload "clams")
+
+(defpackage :ros.script.bin/migrations.3660333371
+  (:use :cl :cl-fad)
+  (:import-from :clams/config :project-root :configure :disconnect))
+
+(in-package :ros.script.bin/migrations.3660333371)
+
+(defun usage ()
+  (format t "Usage: migrations.ros [new|run]~%"))
+
+(defvar mig-dir-path
+  (format nil "~A~A/" project-root "migrations"))
+
+(defvar mig-template
+  (let ((templ-rel-path "scripts/templates/migration.lisp"))
+    (format nil "~A~A" project-root templ-rel-path)))
+
+(defun new-mig-name (name)
+  (let ((time (get-universal-time))
+        (fname (substitute #\- #\  (string-downcase name))))
+
+    (format nil "~A-~A~A" time fname ".lisp")))
+
+(defun new (args)
+  (let* ((name (or (car args) "migration"))
+         (mig-name (new-mig-name name))
+         (mig-file-path (format nil "~A~A" mig-dir-path mig-name)))
+
+    (copy-file mig-template mig-file-path)))
+
+(defun run ()
+  (let ((files (list-directory mig-dir-path)))
+    (loop for fpath in files do
+      (if (equal (pathname-type fpath) "lisp")
+        (load fpath)))))
+
+(defun main (&rest argv)
+  (declare (ignorable argv))
+
+  (cond
+    ((equal "new" (car argv)) (new (cdr argv)))
+    ((equal "run" (car argv)) (run))
+    (t (usage))))
