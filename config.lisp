@@ -37,5 +37,5 @@
 
 (defun shutdown ()
   (when *pg-connection*
-    (dbi:disconnect *pg-connection*)
+    (datafly:disconnect-toplevel)
     (setq *pg-connection* nil)))
