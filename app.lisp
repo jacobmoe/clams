@@ -1,6 +1,6 @@
 (defpackage :clams/app
   (:use :cl)
-  (:import-from :clams/config :configure :disconnect)
+  (:import-from :clams/config :configure :shutdown)
   (:import-from :clams/api/routes :register-routes)
   (:export :start :stop))
 
@@ -18,6 +18,6 @@
         (clack:clackup *app*)))
 
 (defun stop ()
-  (disconnect)
+  (shutdown)
   (clack:stop *handler*)
   (setf *handler* nil))

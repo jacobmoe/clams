@@ -7,8 +7,8 @@ exec ros -Q -- $0 "$@"
 (ql:quickload "clams")
 
 (defpackage :ros.script.bin/migrations.3660333371
-  (:use :cl :cl-fad)
-  (:import-from :clams/config :project-root :configure :disconnect))
+  (:use :cl :cl-fad :sxql :datafly)
+  (:import-from :clams/config :project-root :configure :shutdown))
 
 (in-package :ros.script.bin/migrations.3660333371)
 
@@ -36,10 +36,14 @@ exec ros -Q -- $0 "$@"
     (copy-file mig-template mig-file-path)))
 
 (defun run ()
+  (configure)
+
   (let ((files (list-directory mig-dir-path)))
     (loop for fpath in files do
       (if (equal (pathname-type fpath) "lisp")
-        (load fpath)))))
+          (load fpath))))
+
+  (shutdown))
 
 (defun main (&rest argv)
   (declare (ignorable argv))

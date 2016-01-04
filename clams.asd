@@ -7,8 +7,6 @@
   :defsystem-depends-on ("asdf-package-system")
   :depends-on (:clack
                :ningle
-               :cl-dbi
-               :envy
                :clams/app))
 
 (register-system-packages :lack '(:lack.response :lack.request))
